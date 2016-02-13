@@ -28,4 +28,22 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \sibds\grid\AutoloadExample::widget(); ?>```
+'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            [
+                'class' => 'sibds\grid\UrlColumn',
+                'attribute'=>'id',
+            ],
+            [
+                'class' => 'sibds\grid\UrlColumn',
+                'attribute'=>'name',
+            ],
+            [
+                'class' => 'sibds\grid\UrlColumn',
+                'attribute'=>'url',
+            ],
+            ...,
+
+            ['class' => 'sibds\grid\ActionColumn'],
+        ],```
