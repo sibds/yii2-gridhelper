@@ -14,7 +14,7 @@ use kartik\icons\Icon;
 class ActionColumn extends \kartik\grid\ActionColumn
 {
     use TranslateTrait;
-    
+
     public $template = '{update} {copy} {lock}{unlock} {restore} {delete}';
 
     public function init()

@@ -27,7 +27,7 @@ class UrlColumn extends DataColumn
         $this->value = function ($model, $key, $index, $widget) {
             return Html::a($model->{$this->attribute},
                 ['update', 'id'=>$model->id],
-                ['title'=>'Редактирование записи']);
+                ['title'=>self::t('messages', 'Edit item')]);
         };
     }
 
