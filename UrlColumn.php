@@ -10,6 +10,7 @@ namespace sibds\grid;
 
 
 use yii\grid\DataColumn;
+use yii\helpers\Html;
 
 class UrlColumn extends DataColumn
 {
