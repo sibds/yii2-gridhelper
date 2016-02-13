@@ -14,4 +14,5 @@ return [
     'Restore'=>'Восстановить',
     'Delete'=>'Удалить',
     'Are you sure you want to delete this item?' => 'Вы действительно хотите удалить этот элемент?',
+    'Are you sure you want to restore this item?' => 'Вы действительно хотите восстановить этот элемент?',
 ];

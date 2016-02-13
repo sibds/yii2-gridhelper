@@ -55,23 +55,45 @@ class ActionColumn extends \yii\grid\ActionColumn
         if (!isset($this->buttons['lock'])) {
             $this->buttons['lock'] = function ($url, $model, $key) {
                 $options = array_merge([
-                    'title' => Yii::t('message', 'Update'),
-                    'aria-label' => Yii::t('message', 'Update'),
+                    'title' => Yii::t('message', 'Lock'),
+                    'aria-label' => Yii::t('message', 'Lock'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('copy', [], Icon::FA), $url, $options);
             };
         }
+        if (!isset($this->buttons['unlock'])) {
+            $this->buttons['unlock'] = function ($url, $model, $key) {
+                $options = array_merge([
+                    'title' => Yii::t('message', 'Unlock'),
+                    'aria-label' => Yii::t('message', 'Unlock'),
+                    'data-pjax' => '0',
+                ], $this->buttonOptions);
+                return Html::a(Icon::show('copy', [], Icon::FA), $url, $options);
+            };
+        }
+        if (!isset($this->buttons['restore'])) {
+            $this->buttons['restore'] = function ($url, $model, $key) {
+                $options = array_merge([
+                    'title' => Yii::t('message', 'Restore'),
+                    'aria-label' => Yii::t('message', 'Restore'),
+                    'data-confirm' => Yii::t('message', 'Are you sure you want to restore this item?'),
+                    'data-method' => 'post',
+                    'data-pjax' => '0',
+                ], $this->buttonOptions);
+                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+            };
+        }
         if (!isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model, $key) {
+                $name = $model->hasAttribute('removed')?Yii::t('message', 'To trash'):Yii::t('message', 'Delete');
                 $options = array_merge([
-                    'title' => Yii::t('message', 'Delete'),
-                    'aria-label' => Yii::t('message', 'Delete'),
+                    'title' => $name,
+                    'aria-label' => $name,
                     'data-confirm' => Yii::t('message', 'Are you sure you want to delete this item?'),
                     'data-method' => 'post',
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-
                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
             };
         }
