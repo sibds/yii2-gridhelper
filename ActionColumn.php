@@ -46,7 +46,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'aria-label' => self::t('message', 'Update'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a(Icon::show('pencil'), $url, $options);
+                return Html::a(trim(Icon::show('pencil')), $url, $options);
             };
         }
         if (!isset($this->buttons['copy'])) {
@@ -57,7 +57,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 if($model->hasMethod('duplicate'))
-                    return Html::a(Icon::show('copy'), $url, $options);
+                    return Html::a(trim(Icon::show('copy')), $url, $options);
             };
         }
         if (!isset($this->buttons['lock'])) {
@@ -68,7 +68,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 if($model->hasAttribute('locked')&&!$model->locked)
-                    return Html::a(Icon::show('lock'), $url, $options);
+                    return Html::a(trim(Icon::show('lock')), $url, $options);
             };
         }
         if (!isset($this->buttons['unlock'])) {
@@ -79,7 +79,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 if($model->hasAttribute('locked')&&$model->locked)
-                    return Html::a(Icon::show('unlock'), $url, $options);
+                    return Html::a(trim(Icon::show('unlock')), $url, $options);
             };
         }
         if (!isset($this->buttons['restore'])) {
@@ -92,7 +92,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 if($model->hasAttribute('removed')&&$model->removed)
-                    return Html::a(Icon::show('share-square-o'), $url, $options);
+                    return Html::a(trim(Icon::show('share-square-o')), $url, $options);
             };
         }
         if (!isset($this->buttons['delete'])) {
@@ -105,7 +105,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'data-method' => 'post',
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a(Icon::show('trash'), $url, $options);
+                return Html::a(trim(Icon::show('trash')), $url, $options);
             };
         }
     }
