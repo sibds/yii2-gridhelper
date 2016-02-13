@@ -13,7 +13,7 @@ use kartik\icons\Icon;
 
 class ActionColumn extends \yii\grid\ActionColumn
 {
-    public $template = '{update} {copy} {lock}{unlock} {restore}{delete}';
+    public $template = '{update} {copy} {lock}{unlock} {restore} {delete}';
 
     /**
      * Initializes the default button rendering callbacks.
@@ -59,7 +59,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'aria-label' => self::t('message', 'Lock'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a(Icon::show('copy', [], Icon::FA), $url, $options);
+                return Html::a(Icon::show('lock', [], Icon::FA), $url, $options);
             };
         }
         if (!isset($this->buttons['unlock'])) {
@@ -69,7 +69,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'aria-label' => self::t('message', 'Unlock'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a(Icon::show('copy', [], Icon::FA), $url, $options);
+                return Html::a(Icon::show('unlock', [], Icon::FA), $url, $options);
             };
         }
         if (!isset($this->buttons['restore'])) {
@@ -81,7 +81,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'data-method' => 'post',
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+                return Html::a(Icon::show('share-square-o', [], Icon::FA), $url, $options);
             };
         }
         if (!isset($this->buttons['delete'])) {
@@ -94,7 +94,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'data-method' => 'post',
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+                return Html::a(Icon::show('trash', [], Icon::FA), $url, $options);
             };
         }
     }
