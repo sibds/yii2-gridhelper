@@ -11,7 +11,7 @@ namespace sibds\grid;
 use yii\bootstrap\Html;
 use kartik\icons\Icon;
 
-class ActionColumn extends \yii\grid\ActionColumn
+class ActionColumn extends \kartik\grid\ActionColumn
 {
     public $template = '{update} {copy} {lock}{unlock} {restore} {delete}';
 
@@ -54,6 +54,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'title' => self::t('message', 'Copy'),
                     'aria-label' => self::t('message', 'Copy'),
                     'data-pjax' => '0',
+                    'visible' => $model->hasMethod('duplicate'),
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('copy', [], Icon::FA), $url, $options);
             };
@@ -64,6 +65,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'title' => self::t('message', 'Lock'),
                     'aria-label' => self::t('message', 'Lock'),
                     'data-pjax' => '0',
+                    'visible' => function($data){ return $data->hasAttribute('locked')&&!$data->locked;},
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('lock', [], Icon::FA), $url, $options);
             };
@@ -74,6 +76,7 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'title' => self::t('message', 'Unlock'),
                     'aria-label' => self::t('message', 'Unlock'),
                     'data-pjax' => '0',
+                    'visible' => function($data){ return $data->hasAttribute('locked')&&$data->locked;},
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('unlock', [], Icon::FA), $url, $options);
             };
@@ -86,13 +89,14 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'data-confirm' => self::t('message', 'Are you sure you want to restore this item?'),
                     'data-method' => 'post',
                     'data-pjax' => '0',
+                    'visible' => function($data){ return $data->hasAttribute('removed')&&$data->removed;},
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('share-square-o', [], Icon::FA), $url, $options);
             };
         }
         if (!isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model, $key) {
-                $name = $model->hasAttribute('removed')?self::t('message', 'To trash'):self::t('message', 'Delete');
+                $name = $model->hasAttribute('removed')&&!$model->removed?self::t('message', 'To trash'):self::t('message', 'Delete');
                 $options = array_merge([
                     'title' => $name,
                     'aria-label' => $name,
