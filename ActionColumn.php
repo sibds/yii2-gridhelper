@@ -65,7 +65,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'title' => self::t('message', 'Lock'),
                     'aria-label' => self::t('message', 'Lock'),
                     'data-pjax' => '0',
-                    'visible' => function($data){ return $data->hasAttribute('locked')&&!$data->locked;},
+                    'visible' => $model->hasAttribute('locked')&&!$model->locked,
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('lock', [], Icon::FA), $url, $options);
             };
@@ -76,7 +76,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'title' => self::t('message', 'Unlock'),
                     'aria-label' => self::t('message', 'Unlock'),
                     'data-pjax' => '0',
-                    'visible' => function($data){ return $data->hasAttribute('locked')&&$data->locked;},
+                    'visible' => $model->hasAttribute('locked')&&$model->locked,
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('unlock', [], Icon::FA), $url, $options);
             };
@@ -89,7 +89,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'data-confirm' => self::t('message', 'Are you sure you want to restore this item?'),
                     'data-method' => 'post',
                     'data-pjax' => '0',
-                    'visible' => function($data){ return $data->hasAttribute('removed')&&$data->removed;},
+                    'visible' => $model->hasAttribute('removed')&&$model->removed,
                 ], $this->buttonOptions);
                 return Html::a(Icon::show('share-square-o', [], Icon::FA), $url, $options);
             };
