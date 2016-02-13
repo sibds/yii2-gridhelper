@@ -31,7 +31,7 @@ class UrlColumn extends DataColumn
             $lockIcon = '';
 
             if($this->showLock){
-                if($model->hasAttribute('locked')&&!$model->{$model->lockedAttribute}){
+                if($model->hasAttribute('locked')&&$model->{$model->lockedAttribute}){
                     $lockIcon = Icon::show('eye-slash');
                 }else{
                     $lockIcon = Icon::show('eye');
