@@ -13,6 +13,8 @@ use kartik\icons\Icon;
 
 class ActionColumn extends \kartik\grid\ActionColumn
 {
+    use TranslateTrait;
+    
     public $template = '{update} {copy} {lock}{unlock} {restore} {delete}';
 
     public function init()
@@ -42,8 +44,8 @@ class ActionColumn extends \kartik\grid\ActionColumn
         if (!isset($this->buttons['update'])) {
             $this->buttons['update'] = function ($url, $model, $key) {
                 $options = array_merge([
-                    'title' => self::t('message', 'Update'),
-                    'aria-label' => self::t('message', 'Update'),
+                    'title' => self::t('messages', 'Edit'),
+                    'aria-label' => self::t('messages', 'Edit'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 return Html::a(trim(Icon::show('pencil')), $url, $options);
@@ -52,8 +54,8 @@ class ActionColumn extends \kartik\grid\ActionColumn
         if (!isset($this->buttons['copy'])) {
             $this->buttons['copy'] = function ($url, $model, $key) {
                 $options = array_merge([
-                    'title' => self::t('message', 'Copy'),
-                    'aria-label' => self::t('message', 'Copy'),
+                    'title' => self::t('messages', 'Copy'),
+                    'aria-label' => self::t('messages', 'Copy'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 if($model->hasMethod('duplicate'))
@@ -63,8 +65,8 @@ class ActionColumn extends \kartik\grid\ActionColumn
         if (!isset($this->buttons['lock'])) {
             $this->buttons['lock'] = function ($url, $model, $key) {
                 $options = array_merge([
-                    'title' => self::t('message', 'Lock'),
-                    'aria-label' => self::t('message', 'Lock'),
+                    'title' => self::t('messages', 'Lock'),
+                    'aria-label' => self::t('messages', 'Lock'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 if($model->hasAttribute('locked')&&!$model->locked)
@@ -74,8 +76,8 @@ class ActionColumn extends \kartik\grid\ActionColumn
         if (!isset($this->buttons['unlock'])) {
             $this->buttons['unlock'] = function ($url, $model, $key) {
                 $options = array_merge([
-                    'title' => self::t('message', 'Unlock'),
-                    'aria-label' => self::t('message', 'Unlock'),
+                    'title' => self::t('messages', 'Unlock'),
+                    'aria-label' => self::t('messages', 'Unlock'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 if($model->hasAttribute('locked')&&$model->locked)
@@ -85,9 +87,9 @@ class ActionColumn extends \kartik\grid\ActionColumn
         if (!isset($this->buttons['restore'])) {
             $this->buttons['restore'] = function ($url, $model, $key) {
                 $options = array_merge([
-                    'title' => self::t('message', 'Restore'),
-                    'aria-label' => self::t('message', 'Restore'),
-                    'data-confirm' => self::t('message', 'Are you sure you want to restore this item?'),
+                    'title' => self::t('messages', 'Restore'),
+                    'aria-label' => self::t('messages', 'Restore'),
+                    'data-confirm' => self::t('messages', 'Are you sure you want to restore this item?'),
                     'data-method' => 'post',
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
@@ -97,34 +99,16 @@ class ActionColumn extends \kartik\grid\ActionColumn
         }
         if (!isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model, $key) {
-                $name = $model->hasAttribute('removed')&&!$model->removed?self::t('message', 'To trash'):self::t('message', 'Delete');
+                $name = $model->hasAttribute('removed')&&!$model->removed?self::t('messages', 'To trash'):self::t('messages', 'Delete');
                 $options = array_merge([
                     'title' => $name,
                     'aria-label' => $name,
-                    'data-confirm' => self::t('message', 'Are you sure you want to delete this item?'),
+                    'data-confirm' => self::t('messages', 'Are you sure you want to delete this item?'),
                     'data-method' => 'post',
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
                 return Html::a(trim(Icon::show('trash')), $url, $options);
             };
         }
-    }
-
-    public function registerTranslations()
-    {
-        $i18n = \Yii::$app->i18n;
-        $i18n->translations['sibds/grid/*'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'sourceLanguage' => 'en-US',
-            'basePath' => '@vendor/sibds/yii2-gridhelper/messages',
-            'fileMap' => [
-                'sibds/grid/messages' => 'messages.php',
-            ],
-        ];
-    }
-
-    public static function t($category, $message, $params = [], $language = null)
-    {
-        return \Yii::t('sibds/grid/' . $category, $message, $params, $language);
     }
 }
