@@ -10,7 +10,7 @@ namespace sibds\grid;
 
 
 use kartik\icons\Icon;
-use yii\grid\DataColumn;
+use kartik\grid\DataColumn;
 use yii\helpers\Html;
 
 class UrlColumn extends DataColumn
