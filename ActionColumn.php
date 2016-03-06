@@ -56,9 +56,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 $options = array_merge([
                     'title' => self::t('messages', 'Copy'),
                     'aria-label' => self::t('messages', 'Copy'),
-                    'data-pjax' => '0',
+                    //'data-pjax' => '0',
                 ], $this->buttonOptions);
-                if($model->hasMethod('duplicate'))
+                if($model->hasMethod('duplicate')
+                    &&($model->hasAttribute('removed')&&!$model->removed))
                     return Html::a(trim(Icon::show('copy')), $url, $options);
             };
         }
@@ -67,9 +68,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 $options = array_merge([
                     'title' => self::t('messages', 'Lock'),
                     'aria-label' => self::t('messages', 'Lock'),
-                    'data-pjax' => '0',
+                    //'data-pjax' => '0',
                 ], $this->buttonOptions);
-                if($model->hasAttribute('locked')&&!$model->locked)
+                if(($model->hasAttribute('locked')&&!$model->locked)
+                    &&($model->hasAttribute('removed')&&!$model->removed))
                     return Html::a(trim(Icon::show('lock')), $url, $options);
             };
         }
@@ -78,9 +80,10 @@ class ActionColumn extends \kartik\grid\ActionColumn
                 $options = array_merge([
                     'title' => self::t('messages', 'Unlock'),
                     'aria-label' => self::t('messages', 'Unlock'),
-                    'data-pjax' => '0',
+                    //'data-pjax' => '0',
                 ], $this->buttonOptions);
-                if($model->hasAttribute('locked')&&$model->locked)
+                if(($model->hasAttribute('locked')&&$model->locked)
+                    &&($model->hasAttribute('removed')&&!$model->removed))
                     return Html::a(trim(Icon::show('unlock')), $url, $options);
             };
         }
@@ -111,4 +114,5 @@ class ActionColumn extends \kartik\grid\ActionColumn
             };
         }
     }
+
 }
