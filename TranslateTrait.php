@@ -22,6 +22,7 @@ trait TranslateTrait
             'basePath' => '@vendor/sibds/yii2-gridhelper/messages',
             'fileMap' => [
                 'sibds/grid/messages' => 'messages.php',
+                'sibds/grid/toolbar' => 'toolbar.php',
             ],
         ];
     }
