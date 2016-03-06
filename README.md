@@ -1,6 +1,6 @@
 Helpers for GridView
 ====================
-Helper classes for Yii2 GridView
+Helper classes for [kartik-v/yii2-grid](http://demos.krajee.com/grid)
 
 Installation
 ------------
