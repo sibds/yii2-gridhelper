@@ -13,6 +13,8 @@ use yii\helpers\Html;
 
 class GridView extends \kartik\grid\GridView
 {
+    use TranslateTrait;
+
     public $containerOptions = ['style' => 'overflow: auto']; // only set when $responsive = false
     public $headerRowOptions = ['class' => 'kartik-sheet-style'];
     public $filterRowOptions = ['class' => 'kartik-sheet-style'];
@@ -39,6 +41,8 @@ class GridView extends \kartik\grid\GridView
 
     public function init()
     {
+        $this->registerTranslations();
+
         //Toolbar
         $toolbar = [
             '{export}',
@@ -49,28 +53,28 @@ class GridView extends \kartik\grid\GridView
 
         $basic_toolbar = [
             ['content' =>
-                Html::a('<i class="glyphicon glyphicon-plus"></i> Добавить', ['update'], ['data-pjax' => 0, 'title' => 'Add Pages', 'class' => 'btn btn-success']) . ' ' .
-                Html::a('<i class="glyphicon glyphicon-repeat"></i> Обновить', ['index'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => 'Reset Grid'])
+                Html::a('<i class="glyphicon glyphicon-plus"></i> ' . self::t('toolbar', 'Add'), ['update'], ['data-pjax' => 0, 'title' => 'Add Pages', 'class' => 'btn btn-success']) . ' ' .
+                Html::a('<i class="glyphicon glyphicon-repeat"></i> ' . self::t('toolbar', 'Refresh'), ['index'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => 'Reset Grid'])
             ],
             [
                 'content' =>
-                    Html::a('<i class="glyphicon glyphicon-list"></i> Категории', ['news-category/list'], ['data-pjax' => 0, 'title' => 'Add Pages', 'class' => 'btn btn-default'])
+                    Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), ['news-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
             ],
             [
                 'content' =>
                     Html::a(
-                        '<i class="glyphicon glyphicon-trash"></i> Корзина',
+                        '<i class="glyphicon glyphicon-trash"></i> ' . self::t('toolbar', 'In Trash'),
                         ['trash'],
                         ['data-pjax' => 0, 'title' => 'Removed records', 'class' => 'btn btn-default'])
             ]
         ];
 
-        if($view->context->action->id === 'trash'){
+        if ($view->context->action->id === 'trash') {
             $basic_toolbar = [
                 [
                     'content' =>
                         Html::a(
-                            '<i class="glyphicon glyphicon-arrow-left"></i> Вернуться к записям',
+                            '<i class="glyphicon glyphicon-arrow-left"></i> ' . self::t('toolbar', 'Back to Records'),
                             ['list'],
                             ['data-pjax' => 0, 'title' => 'List records', 'class' => 'btn btn-default'])
                 ]
