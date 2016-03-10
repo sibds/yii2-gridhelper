@@ -56,18 +56,29 @@ class GridView extends \kartik\grid\GridView
                 Html::a('<i class="glyphicon glyphicon-plus"></i> ' . self::t('toolbar', 'Add'), ['update'], ['data-pjax' => 0, 'title' => 'Add Pages', 'class' => 'btn btn-success']) . ' ' .
                 Html::a('<i class="glyphicon glyphicon-repeat"></i> ' . self::t('toolbar', 'Refresh'), ['index'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => 'Reset Grid'])
             ],
-            [
-                'content' =>
-                    Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), ['news-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
-            ],
-            [
-                'content' =>
-                    Html::a(
-                        '<i class="glyphicon glyphicon-trash"></i> ' . self::t('toolbar', 'In Trash'),
-                        ['trash'],
-                        ['data-pjax' => 0, 'title' => 'Removed records', 'class' => 'btn btn-default'])
-            ]
         ];
+
+        if(array_key_exists('category_id', $this->filterModel->attributes)){
+            array_push($basic_toolbar,
+                [
+                    'content' =>
+                        Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), ['news-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
+                ]
+            );
+        }
+
+        if($this->filterModel->hasAttribute($this->filterModel->removedAttribute)){
+            array_push($basic_toolbar,
+                [
+                    'content' =>
+                        Html::a(
+                            '<i class="glyphicon glyphicon-trash"></i> ' . self::t('toolbar', 'In Trash'),
+                            ['trash'],
+                            ['data-pjax' => 0, 'title' => 'Removed records', 'class' => 'btn btn-default'])
+                ]
+                );
+        }
+
 
         if ($view->context->action->id === 'trash') {
             $basic_toolbar = [
