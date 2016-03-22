@@ -63,7 +63,7 @@ class GridView extends \kartik\grid\GridView
             array_push($basic_toolbar,
                 [
                     'content' =>
-                        Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), ['news-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
+                        Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), [\Yii::$app->controller->id.'-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
                 ]
             );
         }
