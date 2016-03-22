@@ -58,7 +58,8 @@ class GridView extends \kartik\grid\GridView
             ],
         ];
 
-        if(array_key_exists('category_id', $this->filterModel->attributes)){
+        if($this->filterModel->hasAttribute('category_id')||
+            $this->filterModel->hasMethod('getCategory')){
             array_push($basic_toolbar,
                 [
                     'content' =>
