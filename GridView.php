@@ -32,11 +32,23 @@ class GridView extends \kartik\grid\GridView
     public $condensed = true;
     public $responsive = true;
     public $hover = true;
+    public $floatHeader = true;
     public $showPageSummary = false;
     public $panel = [
         //'type' => GridView::TYPE_PRIMARY,
         'heading' => false,//$this->title,
     ];
+    public $panelAfterTemplate = '{summary}';
+    public $panelBeforeTemplate = <<< HTML
+    <div class="pull-right">
+        <div class="btn-toolbar kv-grid-toolbar" role="toolbar">
+            {toolbar}
+        </div>
+    </div>
+    {before}
+    {summary}
+    <div class="clearfix"></div>
+HTML;
     public $persistResize = false;
 
     public function init()
