@@ -38,7 +38,7 @@ class GridView extends \kartik\grid\GridView
         //'type' => GridView::TYPE_PRIMARY,
         'heading' => false,//$this->title,
     ];
-    public $panelAfterTemplate = '{summary}';
+    public $panelAfterTemplate = '{summary}{after}';
     public $panelBeforeTemplate = <<< HTML
     <div class="pull-right">
         <div class="btn-toolbar kv-grid-toolbar" role="toolbar">
