@@ -70,9 +70,15 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'aria-label' => self::t('messages', 'Lock'),
                     //'data-pjax' => '0',
                 ], $this->buttonOptions);
-                if(($model->hasAttribute('locked')&&!$model->locked)
-                    &&($model->hasAttribute('removed')&&!$model->removed))
-                    return Html::a(trim(Icon::show('lock')), $url, $options);
+                if(($model->hasAttribute('locked')&&!$model->locked)){
+                    if($model->hasAttribute('removed')){
+                        if(!$model->removed){
+                            return Html::a(trim(Icon::show('lock')), $url, $options);
+                        } 
+                    } else {
+                        return Html::a(trim(Icon::show('lock')), $url, $options);
+                    }
+                }
             };
         }
         if (!isset($this->buttons['unlock'])) {
@@ -82,9 +88,14 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'aria-label' => self::t('messages', 'Unlock'),
                     //'data-pjax' => '0',
                 ], $this->buttonOptions);
-                if(($model->hasAttribute('locked')&&$model->locked)
-                    &&($model->hasAttribute('removed')&&!$model->removed))
-                    return Html::a(trim(Icon::show('unlock')), $url, $options);
+                if(($model->hasAttribute('locked')&&$model->locked)){
+                    if($model->hasAttribute('removed')){
+                        if(!$model->removed)
+                            return Html::a(trim(Icon::show('unlock')), $url, $options);        
+                    } else {
+                        return Html::a(trim(Icon::show('unlock')), $url, $options);
+                    }                    
+                }
             };
         }
         if (!isset($this->buttons['restore'])) {
