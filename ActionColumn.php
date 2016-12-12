@@ -58,9 +58,14 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'aria-label' => self::t('messages', 'Copy'),
                     //'data-pjax' => '0',
                 ], $this->buttonOptions);
-                if($model->hasMethod('duplicate')
-                    &&($model->hasAttribute('removed')&&!$model->removed))
-                    return Html::a(trim(Icon::show('copy')), $url, $options);
+                if($model->hasMethod('duplicate')){
+                    if($model->hasAttribute('removed')){
+                        if(!$model->removed)
+                            return Html::a(trim(Icon::show('copy')), $url, $options);
+                    } else {
+                        return Html::a(trim(Icon::show('copy')), $url, $options);
+                    }
+                }
             };
         }
         if (!isset($this->buttons['lock'])) {
