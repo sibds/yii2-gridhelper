@@ -9,6 +9,7 @@ return [
     'Add' => 'Добавить',
     'Refresh' => 'Обновить',
     'Categories' => 'Категории',
+    'Groups' => 'Группы',
     'In Trash' => 'Корзина',
     'Back to Records' => 'Вернуться к записям',
 ];
