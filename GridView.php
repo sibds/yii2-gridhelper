@@ -79,6 +79,17 @@ HTML;
                 ]
             );
         }
+        
+        if($this->filterModel->hasAttribute('group_id')||
+            $this->filterModel->hasMethod('getGroup')){
+            array_push($basic_toolbar,
+                [
+                    'content' =>
+                        Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Groups'), [\Yii::$app->controller->id.'-group/list'], ['data-pjax' => 0, 'title' => 'Groups', 'class' => 'btn btn-default'])
+                ]
+            );
+        }
+
 
         if($this->filterModel->hasAttribute($this->filterModel->removedAttribute)){
             array_push($basic_toolbar,
