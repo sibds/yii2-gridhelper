@@ -70,38 +70,41 @@ HTML;
             ],
         ];
 
-        if($this->filterModel->hasAttribute('category_id')||
-            $this->filterModel->hasMethod('getCategory')){
-            array_push($basic_toolbar,
-                [
-                    'content' =>
-                        Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), [\Yii::$app->controller->id.'-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
-                ]
-            );
+        if(!is_null($this->filterModel)){
+            if($this->filterModel->hasAttribute('category_id')||
+                $this->filterModel->hasMethod('getCategory')){
+                array_push($basic_toolbar,
+                    [
+                        'content' =>
+                            Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), [\Yii::$app->controller->id.'-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
+                    ]
+                );
+            }
+            
+            if($this->filterModel->hasAttribute('group_id')||
+                $this->filterModel->hasMethod('getGroup')){
+                array_push($basic_toolbar,
+                    [
+                        'content' =>
+                            Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Groups'), [\Yii::$app->controller->id.'-group/list'], ['data-pjax' => 0, 'title' => 'Groups', 'class' => 'btn btn-default'])
+                    ]
+                );
+            }
+
+
+            if($this->filterModel->hasAttribute($this->filterModel->removedAttribute)){
+                array_push($basic_toolbar,
+                    [
+                        'content' =>
+                            Html::a(
+                                '<i class="glyphicon glyphicon-trash"></i> ' . self::t('toolbar', 'In Trash'),
+                                ['trash'],
+                                ['data-pjax' => 0, 'title' => 'Removed records', 'class' => 'btn btn-default'])
+                    ]
+                    );
+            }    
         }
         
-        if($this->filterModel->hasAttribute('group_id')||
-            $this->filterModel->hasMethod('getGroup')){
-            array_push($basic_toolbar,
-                [
-                    'content' =>
-                        Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Groups'), [\Yii::$app->controller->id.'-group/list'], ['data-pjax' => 0, 'title' => 'Groups', 'class' => 'btn btn-default'])
-                ]
-            );
-        }
-
-
-        if($this->filterModel->hasAttribute($this->filterModel->removedAttribute)){
-            array_push($basic_toolbar,
-                [
-                    'content' =>
-                        Html::a(
-                            '<i class="glyphicon glyphicon-trash"></i> ' . self::t('toolbar', 'In Trash'),
-                            ['trash'],
-                            ['data-pjax' => 0, 'title' => 'Removed records', 'class' => 'btn btn-default'])
-                ]
-                );
-        }
 
 
         if ($view->context->action->id === 'trash') {
