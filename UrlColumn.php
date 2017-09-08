@@ -40,7 +40,7 @@ class UrlColumn extends DataColumn
 
             return Html::a($lockIcon.$model->{$this->attribute},
                 ['update', 'id'=>$model->id],
-                ['title'=>self::t('messages', 'Edit item')]);
+                ['title'=>self::t('messages', 'Edit item'), 'data-pjax'=>0]);
         };
     }
 
