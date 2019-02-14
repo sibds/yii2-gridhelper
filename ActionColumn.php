@@ -48,7 +48,7 @@ class ActionColumn extends \kartik\grid\ActionColumn
                     'aria-label' => self::t('messages', 'Edit'),
                     'data-pjax' => '0',
                 ], $this->buttonOptions);
-                return Html::a(trim(Icon::show('pencil')), $url, $options);
+                return Html::a(trim(Icon::show('edit')), $url, $options);
             };
         }
         if (!isset($this->buttons['copy'])) {
