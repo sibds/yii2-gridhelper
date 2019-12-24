@@ -9,6 +9,7 @@
 namespace sibds\grid;
 
 use yii\helpers\Html;
+use kartik\icons\Icon;
 
 
 class GridView extends \kartik\grid\GridView
@@ -40,7 +41,7 @@ class GridView extends \kartik\grid\GridView
     ];
     public $panelAfterTemplate = '{summary}{after}';
     public $panelBeforeTemplate = <<< HTML
-    <div class="pull-right">
+    <div class="float-right">
         <div class="btn-toolbar kv-grid-toolbar" role="toolbar">
             {toolbar}
         </div>
@@ -65,8 +66,8 @@ HTML;
 
         $basic_toolbar = [
             ['content' =>
-                Html::a('<i class="glyphicon glyphicon-plus"></i> ' . self::t('toolbar', 'Add'), ['update'], ['data-pjax' => 0, 'title' => 'Add Pages', 'class' => 'btn btn-success']) . ' ' .
-                Html::a('<i class="glyphicon glyphicon-repeat"></i> ' . self::t('toolbar', 'Refresh'), [\Yii::$app->controller->defaultAction], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => 'Reset Grid'])
+                Html::a(Icon::show('plus') . self::t('toolbar', 'Add'), ['update'], ['data-pjax' => 0, 'title' => 'Add Pages', 'class' => 'btn btn-success']) . ' ' .
+                Html::a(Icon::show('sync') . self::t('toolbar', 'Refresh'), [\Yii::$app->controller->defaultAction], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => 'Reset Grid'])
             ],
         ];
 
@@ -76,7 +77,10 @@ HTML;
                 array_push($basic_toolbar,
                     [
                         'content' =>
-                            Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Categories'), [\Yii::$app->controller->id.'-category/list'], ['data-pjax' => 0, 'title' => 'Categories', 'class' => 'btn btn-default'])
+                            Html::a(Icon::show('list') . self::t('toolbar', 'Categories'),
+                                [\Yii::$app->controller->id.'-category/list'],
+                                ['data-pjax' => 0, 'title' =>  self::t('toolbar', 'Categories'),
+                                    'class' => 'btn btn-default'])
                     ]
                 );
             }
@@ -86,7 +90,10 @@ HTML;
                 array_push($basic_toolbar,
                     [
                         'content' =>
-                            Html::a('<i class="glyphicon glyphicon-list"></i> ' . self::t('toolbar', 'Groups'), [\Yii::$app->controller->id.'-group/list'], ['data-pjax' => 0, 'title' => 'Groups', 'class' => 'btn btn-default'])
+                            Html::a(Icon::show('list') . self::t('toolbar', 'Groups'),
+                                [\Yii::$app->controller->id.'-group/list'],
+                                ['data-pjax' => 0, 'title' => self::t('toolbar', 'Groups'),
+                                    'class' => 'btn btn-default'])
                     ]
                 );
             }
@@ -97,7 +104,7 @@ HTML;
                     [
                         'content' =>
                             Html::a(
-                                '<i class="glyphicon glyphicon-trash"></i> ' . self::t('toolbar', 'In Trash'),
+                                Icon::show('trash') . self::t('toolbar', 'In Trash'),
                                 ['trash'],
                                 ['data-pjax' => 0, 'title' => 'Removed records', 'class' => 'btn btn-default'])
                     ]
@@ -112,7 +119,7 @@ HTML;
                 [
                     'content' =>
                         Html::a(
-                            '<i class="glyphicon glyphicon-arrow-left"></i> ' . self::t('toolbar', 'Back to Records'),
+                            Icon::show('long-arrow-alt-left') . self::t('toolbar', 'Back to Records'),
                             ['list'],
                             ['data-pjax' => 0, 'title' => 'List records', 'class' => 'btn btn-default'])
                 ]
