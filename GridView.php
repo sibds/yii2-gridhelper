@@ -8,7 +8,7 @@
 
 namespace sibds\grid;
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use kartik\icons\Icon;
 
 
