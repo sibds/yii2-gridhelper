@@ -2,7 +2,7 @@
 
 namespace sibds\grid;
 
-use yii\bootstrap4\Html;
+use yii\bootstrap5\Html;
 
 class PageSize extends \nterms\pagesize\PageSize
 {
