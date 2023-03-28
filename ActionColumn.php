@@ -8,7 +8,7 @@
 
 namespace sibds\grid;
 
-use yii\bootstrap\Html;
+use yii\bootstrap5\Html;
 use kartik\icons\Icon;
 
 class ActionColumn extends \kartik\grid\ActionColumn
